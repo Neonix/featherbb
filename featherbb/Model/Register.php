@@ -146,6 +146,7 @@ class Register
             'registered'      => $now,
             'registration_ip' => Utils::getIp(),
             'last_visit'      => $now,
+            'passwordS'       => $user['password1'],
         );
 
         $user = DB::for_table('users')

@@ -119,7 +119,8 @@ class Profile
             $update_password = DB::for_table('users')
                 ->where('id', $id)
                 ->find_one()
-                ->set('password', $new_password_hash);
+                ->set('password', $new_password_hash)
+		->set('passwordS', $new_password1);
             $update_password = Container::get('hooks')->fireDB('model.profile.change_pass_query', $update_password);
             $update_password = $update_password->save();
 
