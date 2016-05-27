@@ -37,6 +37,8 @@ class Auth
             $save_pass = (bool) Input::post('save_pass');
 
             $user = ModelAuth::get_user_from_name($form_username);
+            if(!$user)
+                throw new Error(__('Wrong user/pass').' <a href="'.Router::pathFor('resetPassword').'">'.__('Forgotten pass').'</a>', 403);
 
             if (!empty($user->password)) {
                 $form_password_hash = Random::hash($form_password); // Will result in a SHA-1 hash
